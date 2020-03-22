@@ -29,6 +29,30 @@ export class PhoneUtilsService {
     return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.NATIONAL)
   }
 
+  /**
+   * Is valid phone number?
+   * 
+   * If both value and country are provided, the method will return true
+   * when arguments relates to a phone number from the selected country.
+   * 
+   * If country is omitted and only value is provided, it will be more vogue 
+   * guessture is it a valid phone number or not.
+   * 
+   * @param value 
+   * @param country 
+   */
+  isValid(value: string, country?: string): boolean {
+    if (!country) {
+      return this.phoneUtil.isValidNumber(
+        this.phoneUtil.parseAndKeepRawInput(value)
+      );
+    }
+
+    return this.phoneUtil.isValidNumberForRegion(
+      this.getRawValue(value, country)
+    );
+  }
+
   private getRawValue(value: any, country: string) {
     return this.phoneUtil.parseAndKeepRawInput(value, country);
   }

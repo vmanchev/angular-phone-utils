@@ -1,84 +1,60 @@
-# Angular Phone Utils
+import { Injectable } from '@angular/core';
+import * as glpn from 'google-libphonenumber/dist/libphonenumber.js'
 
-This an Angular library (and can be used with Angular projects only). It is wrapper arround [google-libphonenumber](https://www.npmjs.com/package/google-libphonenumber) for Angular.
-
-## PhoneUtilsService
-
-### Usage
-
-```
-import { PhoneUtilsService } from 'angular-phone-utils-lib';
-
-// Inject in your component or service:
-constructor(private phoneUtils: PhoneUtilsService) { }
-```
-
-### Methods
-
-- **getInternational(value: string, country: string)** - Transform a given phone number to international format
-  - @param value Phone numer
-  - @param country Two-letters country code
-  - @returns string
-
-- **getNational(value: string, country: string)** - Transform a given phone number to its national format
-  - @param value Phone numer
-  - @param country Two-letters country code
-  - @returns string
-
-## InternationalFormatPipe
-
-### Usage
-
-Import **AngularPhoneUtilsLibModule** in the module where you want to use it:
-```
-import { AngularPhoneUtilsLibModule } from 'angular-phone-utils-lib';
-
-
-@NgModule({
-  imports: [
-    ...,
-    AngularPhoneUtilsLibModule
-  ]
+@Injectable({
+  providedIn: 'root'
 })
-export class UserModule() { }
-```
+export class PhoneUtilsService {
 
-And then it can be used as:
+  private PNF = glpn.PhoneNumberFormat;
+  private phoneUtil = glpn.PhoneNumberUtil.getInstance();
 
-```
-{{ '02 1234567' | internationalFormat : 'BG' }} 
-```
+  /**
+   * Transform a given phone number to international format
+   * 
+   * @param value Phone numer
+   * @param country Two-letters country code
+   */
+  getInternational(value: string, country: string): string {
+    return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.INTERNATIONAL)
+  }
 
-which will produce: 
-```
-+359 2 123 4567
-```
+  /**
+   * Transform a given phone number to its national format
+   * 
+   * @param value Phone numer
+   * @param country Two-letters country code
+   */
+  getNational(value: string, country: string): string {
+    return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.NATIONAL)
+  }
 
-## NationalFormatPipe
+  /**
+   * Is valid phone number?
+   * 
+   * If both value and country are provided, the method will return true
+   * when arguments relates to a phone number from the selected country.
+   * 
+   * If country is omitted and only value is provided, it will be more vogue 
+   * guessture is it a valid phone number or not.
+   * 
+   * @param value 
+   * @param country 
+   */
+  isValid(value: string, country?: string): boolean {
+    if (!country) {
+      return this.phoneUtil.isValidNumber(
+        this.phoneUtil.parseAndKeepRawInput(value)
+      );
+    }
 
-### Usage
+    return this.phoneUtil.isValidNumberForRegion(
+      this.getRawValue(value, country)
+    );
+  }
 
-Import **AngularPhoneUtilsLibModule** in the module where you want to use it:
-```
-import { AngularPhoneUtilsLibModule } from 'angular-phone-utils-lib';
+  private getRawValue(value: any, country: string) {
+    return this.phoneUtil.parseAndKeepRawInput(value, country);
+  }
 
-
-@NgModule({
-  imports: [
-    ...,
-    AngularPhoneUtilsLibModule
-  ]
-})
-export class UserModule() { }
-```
-
-And then it can be used as:
-
-```
-{{ '02 1234567' | nationalFormat : 'BG' }} 
-```
-
-which will produce: 
-```
-02 123 4567
-```
+}

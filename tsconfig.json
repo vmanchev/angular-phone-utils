@@ -17,7 +17,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-phone-urils-lib": [
+        "dist/angular-phone-urils-lib/angular-phone-urils-lib",
+        "dist/angular-phone-urils-lib"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

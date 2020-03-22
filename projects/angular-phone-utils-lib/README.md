@@ -25,6 +25,12 @@ constructor(private phoneUtils: PhoneUtilsService) { }
   - @param country Two-letters country code
   - @returns string
 
+- **isValid(value: string, country: string)** - The method will return true when arguments relates to a phone number from the selected country.
+  - @param value Phone numer
+  - @param country Two-letters country code
+  - @returns boolean
+
+
 ## InternationalFormatPipe
 
 ### Usage

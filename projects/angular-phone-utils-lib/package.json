@@ -1,6 +1,22 @@
 {
   "name": "angular-phone-utils-lib",
-  "version": "0.0.9",
+  "version": "0.0.10",
+  "description": "Angular library for phone number formatting based on google-libphonenumber",
+  "keywords": [
+    "angular",
+    "phone",
+    "format",
+    "formatter",
+    "libphonenumber"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Venelin Manchev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vmanchev/angular-phone-utils"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",

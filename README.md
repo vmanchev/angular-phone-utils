@@ -4,7 +4,7 @@ This an Angular library (and can be used with Angular projects only). It is wrap
 
 ## PhoneUtilsService
 
-1. Usage
+### Usage
 
 ```
 import { PhoneUtilsService } from 'angular-phone-utils-lib';
@@ -13,7 +13,7 @@ import { PhoneUtilsService } from 'angular-phone-utils-lib';
 constructor(private phoneUtils: PhoneUtilsService) { }
 ```
 
-2. Methods
+### Methods
 
 - **getInternational(value: string, country: string)** - Transform a given phone number to international format
   - @param value Phone numer
@@ -24,3 +24,61 @@ constructor(private phoneUtils: PhoneUtilsService) { }
   - @param value Phone numer
   - @param country Two-letters country code
   - @returns string
+
+## InternationalFormatPipe
+
+### Usage
+
+Import **AngularPhoneUtilsLibModule** in the module where you want to use it:
+```
+import { AngularPhoneUtilsLibModule } from 'angular-phone-utils-lib';
+
+
+@NgModule({
+  imports: [
+    ...,
+    AngularPhoneUtilsLibModule
+  ]
+})
+export class UserModule() { }
+```
+
+And then it can be used as:
+
+```
+{{ '02 1234567' | internationalFormat : 'BG' }} 
+```
+
+which will produce: 
+```
++359 2 123 4567
+```
+
+## NationalFormatPipe
+
+### Usage
+
+Import **AngularPhoneUtilsLibModule** in the module where you want to use it:
+```
+import { AngularPhoneUtilsLibModule } from 'angular-phone-utils-lib';
+
+
+@NgModule({
+  imports: [
+    ...,
+    AngularPhoneUtilsLibModule
+  ]
+})
+export class UserModule() { }
+```
+
+And then it can be used as:
+
+```
+{{ '02 1234567' | nationalFormat : 'BG' }} 
+```
+
+which will produce: 
+```
+02 123 4567
+```

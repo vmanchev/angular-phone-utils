@@ -2,6 +2,13 @@
 
 This an Angular library (and can be used with Angular projects only). It is wrapper arround [google-libphonenumber](https://www.npmjs.com/package/google-libphonenumber) for Angular.
 
+
+## Install
+
+```
+npm install --save angular-phone-utils-lib
+```
+
 ## PhoneUtilsService
 
 ### Usage

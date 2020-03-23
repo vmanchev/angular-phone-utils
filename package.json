@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:publish": "ng build angular-phone-utils-lib --prod && cd dist/angular-phone-utils-lib/ && npm publish",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

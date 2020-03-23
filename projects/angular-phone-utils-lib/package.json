@@ -1,6 +1,6 @@
 {
   "name": "angular-phone-utils-lib",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "Angular library for phone number formatting based on google-libphonenumber",
   "keywords": [
     "angular",

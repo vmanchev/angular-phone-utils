@@ -31,6 +31,18 @@ export class PhoneUtilsService {
   }
 
   /**
+   * International format without inner spaces (PNF.E164)
+   * 
+   * Instead of "+359 88 123" it will return "+35988123"
+   * 
+   * @param value 
+   * @param country 
+   */
+  getPlain(value: string, country: string): string {
+    return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.E164)
+  }
+
+  /**
    * Is valid phone number?
    * 
    * The method will return true when arguments relates to a 

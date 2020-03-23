@@ -32,6 +32,11 @@ constructor(private phoneUtils: PhoneUtilsService) { }
   - @param country Two-letters country code
   - @returns string
 
+- **getPlain(value: string, country: string)** - International format without inner spaces (PNF.E164)
+  - @param value Phone numer
+  - @param country Two-letters country code
+  - @returns string
+
 - **isValid(value: string, country: string)** - General purpose validator. Use in conjunction with other services 
 and components. The method will return true when arguments relates to a phone number from the selected country.
   - @param value Phone numer
@@ -115,4 +120,9 @@ And then it can be used as:
 which will produce: 
 ```
 02 123 4567
+```
+
+## Build and publish
+```
+npm run build:publish
 ```

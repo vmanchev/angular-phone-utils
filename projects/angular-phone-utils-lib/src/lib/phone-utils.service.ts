@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import * as glpn from 'google-libphonenumber/dist/libphonenumber.js'
 
 @Injectable({
@@ -43,6 +44,28 @@ export class PhoneUtilsService {
       this.getRawValue(value, country),
       country
     );
+  }
+
+  /**
+   * Reactive form validator
+   * 
+   * Will set *phoneInvalid* property in related form control error's object.
+   * 
+   * @param country 
+   */
+  isValidFormControl(country: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+
+      if (!control.value) {
+        return null;
+      }
+
+      try {
+        return !this.isValid(control.value, country) ? { phoneInvalid: true } : null;
+      } catch (e) {
+        return { phoneInvalid: true }
+      }
+    }
   }
 
   private getRawValue(value: any, country: string) {

@@ -32,10 +32,31 @@ constructor(private phoneUtils: PhoneUtilsService) { }
   - @param country Two-letters country code
   - @returns string
 
-- **isValid(value: string, country: string)** - The method will return true when arguments relates to a phone number from the selected country.
+- **isValid(value: string, country: string)** - General purpose validator. Use in conjunction with other services 
+and components. The method will return true when arguments relates to a phone number from the selected country.
   - @param value Phone numer
   - @param country Two-letters country code
   - @returns boolean
+
+- **isValidFormControl(country: string)** - Reactive form validator. It will set **phoneInvalid** property 
+in related form control error's object.
+  - @param country Two-letters country code. Usage:
+```
+// app.component.ts
+constructor(public phoneValidatorService: PhoneValidatorService) { }
+
+public getForm() {
+  this.form = new FormGroup({
+    phone: new FormControl('', [
+      Validators.required,
+      this.phoneValidatorService.isValidPhone('BG')
+    ])
+  });
+}
+
+// app.component.html
+<span *ngIf="form.get('phone')?.errors?.phoneInvalid">{{ 'FORM.ERROR.PHONE_FORMAT.INVALID' | translate }}</span>
+```
 
 
 ## InternationalFormatPipe

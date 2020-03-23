@@ -52,10 +52,15 @@ export class PhoneUtilsService {
    * @param country 
    */
   isValid(value: string, country: string): boolean {
-    return this.phoneUtil.isValidNumberForRegion(
-      this.getRawValue(value, country),
-      country
-    );
+
+    try {
+      return this.phoneUtil.isValidNumberForRegion(
+        this.getRawValue(value, country),
+        country
+      );
+    } catch (e) {
+      return false;
+    }
   }
 
   /**

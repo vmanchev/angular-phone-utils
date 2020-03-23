@@ -39,7 +39,11 @@ export class PhoneUtilsService {
    * @param country 
    */
   getPlain(value: string, country: string): string {
-    return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.E164)
+    try {
+      return this.phoneUtil.format(this.getRawValue(value, country), this.PNF.E164)
+    } catch (e) {
+      return value ? value.replace(/ /, '') : value;
+    }
   }
 
   /**

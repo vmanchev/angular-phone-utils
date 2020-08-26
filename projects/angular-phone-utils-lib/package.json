@@ -1,6 +1,6 @@
 {
   "name": "angular-phone-utils-lib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Angular library for phone number formatting and validation based on libphonenumber-js",
   "keywords": [
     "angular",

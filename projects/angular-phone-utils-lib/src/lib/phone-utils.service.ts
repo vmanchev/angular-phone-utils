@@ -84,6 +84,10 @@ export class PhoneUtilsService {
       country as CountryCode
     );
 
+    if (!phoneNumber) {
+      return false;
+    }
+
     return phoneNumber.isValid();
   }
 

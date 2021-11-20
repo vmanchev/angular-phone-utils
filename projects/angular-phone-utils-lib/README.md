@@ -4,6 +4,11 @@ This an Angular library (and can be used with Angular projects only).
 
 Since version 0.0.19, it is a wrapper arround [google-libphonenumber](https://www.npmjs.com/package/google-libphonenumber) for Angular. Because of the huge bundle size, from version 0.1.0 it was replaced by [libphonenumber-js](https://gitlab.com/catamphetamine/libphonenumber-js)
 
+## Angular >=13
+Use this repository: https://github.com/optima-digital/optima-lib/tree/master/projects/phone-utils
+
+## Angular <=13
+
 ## Install
 
 ```
